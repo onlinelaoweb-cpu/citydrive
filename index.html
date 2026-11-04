@@ -62,7 +62,7 @@
   body.photo #hud,body.photo #touch,body.photo #toast{display:none!important}
   #flash{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:9;transition:opacity .35s}
   #flash.on{opacity:.9;transition:none}
-  .cars{grid-template-columns:repeat(7,1fr)!important;gap:6px!important}.cars .car{padding:6px 4px;text-align:center}.cars .car b{font-size:13px}
+  .cars{grid-template-columns:repeat(5,1fr)!important;gap:6px!important}.cars .car{padding:6px 4px;text-align:center}.cars .car b{font-size:13px}
   .det{display:flex;gap:12px;align-items:center;justify-content:space-between;margin:6px 0 4px;text-align:left}.det small{opacity:.8}.stg{display:flex;gap:10px;flex:1;max-width:60%}.stg .st2{flex:1}
   .gr2{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.gr2 .sw{flex:0 0 auto;max-width:150px}.gr2 .ups{flex:1;min-width:220px}
   @media (max-width:640px){.cars{grid-template-columns:repeat(4,1fr)!important}.det{flex-direction:column;align-items:stretch;gap:4px}.stg{max-width:none}.gr2 .sw{max-width:none;justify-content:center}}
@@ -70,6 +70,13 @@
   #r2div{position:absolute;left:50%;top:0;bottom:0;width:4px;background:#fff;transform:translateX(-2px);opacity:.9}
   .r2p{position:absolute;bottom:16px;width:50%;text-align:center;color:#fff;font-weight:900;font-size:19px;line-height:1.25;text-shadow:0 2px 6px #000}#r2a{left:0}#r2b{right:0}.r2p small{display:block;font-size:12px;opacity:.85;font-weight:700}
   #r2c{position:absolute;left:50%;top:36%;transform:translate(-50%,-50%);font-size:86px;font-weight:900;color:#ffe15a;text-shadow:0 4px 16px #000;white-space:nowrap}
+  #dlg{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(760px,calc(100vw - 20px));z-index:9;display:none;background:rgba(12,18,44,.93);border:2px solid rgba(255,255,255,.25);border-radius:18px;padding:12px 14px;gap:12px;align-items:flex-start;box-shadow:0 8px 30px rgba(0,0,0,.5);cursor:pointer}
+  body.talk #dlg{display:flex}#dAv{font-size:48px;line-height:1;flex:0 0 auto}#dBody{flex:1;min-width:0;text-align:left}#dName{color:var(--gold);font-size:15px}
+  #dTxt{font-size:17px;line-height:1.35;margin:4px 0 8px;min-height:48px}#dBtns{display:flex;gap:8px;flex-wrap:wrap}
+  #dBtns button{border:0;border-radius:12px;padding:10px 16px;font-weight:800;font-size:15px;font-family:inherit;background:linear-gradient(#ffd34d,#ffa51f);color:#2a1a00;cursor:pointer}#dBtns button.alt{background:linear-gradient(#4f8dff,#2f63d6);color:#fff}
+  #quest{position:absolute;top:max(12px,env(safe-area-inset-top));right:max(12px,env(safe-area-inset-right));max-width:46vw;text-align:right;font-size:13px;font-weight:800;line-height:1.35;text-shadow:0 2px 5px #000,0 0 3px #000;pointer-events:none}
+  body.mirror #quest{top:calc(max(12px,env(safe-area-inset-top)) + 0px)}
+  #cin{width:100%;padding:12px;border-radius:12px;border:2px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#fff;font-size:22px;letter-spacing:2px;text-transform:uppercase;text-align:center;font-family:inherit;user-select:text;-webkit-user-select:text}
   .ups{display:flex;gap:6px}.upb{flex:1;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff;border-radius:12px;padding:6px 4px;font-weight:700;font-size:12px;font-family:inherit;display:flex;flex-direction:column;align-items:center;gap:3px;cursor:pointer}
   .upb:disabled{opacity:.4}.pips{display:flex;gap:3px}.pips i{width:14px;height:6px;border-radius:3px;background:rgba(255,255,255,.25)}.pips i.on{background:var(--gold)}
   .setg{display:grid;grid-template-columns:1fr 1fr;gap:6px}.setg .go{margin-top:0;font-size:14px;padding:10px 6px;box-shadow:0 3px 0 #151d38}
@@ -137,13 +144,14 @@
   <div id="speedo"><div id="spd">0<small>km/h</small></div><div id="nitro"><i></i></div></div>
   <div id="banner"></div>
   <div class="pill" id="fps"></div>
-  <button id="pauseBtn">❚❚</button>
+  <div id="quest"></div><button id="pauseBtn">❚❚</button>
   <div id="mirrorFrame"></div>
 </div>
 <div id="touch"><div id="wheel"><svg id="wsvg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="rgba(20,28,50,.35)" stroke="rgba(255,255,255,.85)" stroke-width="9"/><path d="M50 50 L10 62 M50 50 L90 62 M50 50 L50 90" stroke="rgba(255,255,255,.85)" stroke-width="7" stroke-linecap="round"/><circle cx="50" cy="50" r="10" fill="rgba(255,255,255,.9)"/><rect x="45" y="3" width="10" height="14" rx="3" fill="#ff4d4d"/></svg></div><button id="bL">◀</button><button id="bR">▶</button><button id="bG">GAS</button><button id="bB">BRAKE</button><button id="bH">🅿</button><button id="bN">⚡</button><button id="bK">📯</button><button id="bC">📷</button></div>
 <div id="toast"></div>
 <div id="photoBar"><button id="phSave">📸 Save</button><button id="phZi">＋</button><button id="phZo">－</button><button id="phExit">✖ Exit</button></div>
 <div id="flash"></div>
+<div id="dlg"><div id="dAv"></div><div id="dBody"><b id="dName"></b><div id="dTxt"></div><div id="dBtns"></div></div></div>
 <div id="r2"><div id="r2div"></div><div class="r2p" id="r2a"></div><div class="r2p" id="r2b"></div><div id="r2c"></div></div>
 <div id="overlay"><div class="card" id="card"></div></div>
 <div id="loading">Loading…</div>
@@ -173,11 +181,11 @@ const SIDE_H=0.18, GRAV=17;
 
 /* ================= save ================= */
 const SAVE_KEY='citydrive.v1';
-const S={coins:0,own:[1,0,0,0,0,0,0],car:0,col:[0,0,0,0,0,0,0],up:{},home:[0,0,0,0,0,0],medal:{},best:{},sound:1,music:1,cam:0};
+const S={coins:0,own:[1,0,0,0,0,0,0,0,0,0],car:0,col:[0,0,0,0,0,0,0,0,0,0],up:{},home:[0,0,0,0,0,0],medal:{},best:{},sound:1,music:1,cam:0};
 try{const s=JSON.parse(localStorage.getItem(SAVE_KEY)||'null');if(s)Object.assign(S,s);}catch(e){}
-const OPT=Object.assign({steer:0,auto:0,assist:0,btn:1,q:TOUCH?1:2,mouse:0,pad:1,mirror:0,weather:0},S.opt||{});S.opt=OPT;
+const OPT=Object.assign({steer:0,auto:0,assist:0,btn:1,q:TOUCH?1:2,mouse:0,pad:1,mirror:0,weather:0,voice:1},S.opt||{});S.opt=OPT;
 if(S.wheel===0&&!S.optInit){OPT.steer=1;}S.optInit=1;
-while(S.own.length<7)S.own.push(0);while(S.col.length<7)S.col.push(0);
+while(S.own.length<10)S.own.push(0);while(S.col.length<10)S.col.push(0);S.xp=S.xp||0;S.story=S.story||{ch:0,st:0};
 function save(){try{localStorage.setItem(SAVE_KEY,JSON.stringify(S));}catch(e){}}
 
 /* ================= renderer / scene ================= */
@@ -531,8 +539,14 @@ CT.bus={name:'Big Bus',L:9.2,W:2.5,wr:.5,wb:3.05,tw:.34,top:34,acc:9,grip:8.8,tu
   low:[[-4.6,.5],[4.55,.5],[4.6,.8],[4.6,3.2],[-4.6,3.2]],gh:[[4.58,1.7],[4.62,1.7],[4.62,2.95],[4.58,2.95]]};
 CT.fire={name:'Fire Truck',L:6.6,W:2.3,wr:.52,wb:2.3,tw:.32,top:44,acc:11,grip:9.5,turn:.8,price:1500,desc:'Sirens & ladder!',camK:1.3,hood:[2.3,2.4],noRoof:true,siren:true,
   low:[[-3.3,.6],[3.3,.6],[3.32,.85],[3.3,2.5],[1.0,2.5],[.95,1.9],[-3.3,1.9]],gh:[[3.29,1.55],[3.34,1.55],[3.34,2.4],[3.29,2.4]]};
-const CT_IDS=['hatch','sport','jeep','truck','bike','bus','fire'];
-const LAND_L=[];const WX={grip:1,light:0};
+CT.scoot={name:'Scooty',L:1.75,W:.4,wr:.27,wb:.65,tw:.13,top:32,acc:12,grip:8.6,turn:1.55,price:250,desc:'Cute little scooter',camK:.8,hood:[.1,1.5],lean:1,twoWheel:true,noRoof:true,
+  low:[[-.85,.36],[.8,.36],[.86,.5],[.75,.62],[.1,.66],[-.8,.7]],gh:[[-.8,.7],[-.76,.86],[-.3,.86],[-.2,.7]]};
+CT.amb={name:'Ambulance',L:5.6,W:2.1,wr:.42,wb:1.9,tw:.28,top:46,acc:13,grip:10,turn:.9,price:1100,desc:'Siren van',camK:1.22,hood:[2.2,2.25],noRoof:true,siren:true,sirY:2.62,sirZ:1.4,
+  low:[[-2.8,.5],[2.8,.5],[2.82,.75],[2.8,2.5],[-2.8,2.5]],gh:[[2.79,1.5],[2.84,1.5],[2.84,2.3],[2.79,2.3]]};
+CT.monster={name:'Monster',L:4.6,W:2.4,wr:.95,wb:1.7,wxo:1.5,tw:.7,top:38,acc:14,grip:11,turn:.85,price:2200,desc:'HUGE wheels!',camK:1.35,hood:[.4,2.7],
+  low:[[-2.3,1.25],[2.3,1.25],[2.32,1.45],[2.3,2.0],[1.0,2.1],[-2.3,2.1]],gh:[[-.3,2.1],[.15,2.8],[1.1,2.8],[1.55,2.1]]};
+const CT_IDS=['hatch','sport','jeep','truck','bike','bus','fire','scoot','amb','monster'];
+const LAND_L=[],MIS_L=[];const WX={grip:1,light:0,g:1,turbo:1};const CHEAT={nitro:0,rainbow:0,empty:0,golden:0};
 function getUp(i){return S.up[i]||(S.up[i]={e:0,t:0,n:0});}
 function refreshStats(){const d=CUR.def,U=getUp(CUR.idx);CUR.up=U;
   CUR.st={top:d.top*(1+.07*U.e),acc:d.acc*(1+.12*U.e),grip:d.grip*(1+.07*U.t),turn:d.turn*(1+.04*U.t),nit:1-.14*U.n,nitM:1.32+.05*U.n};}
@@ -585,9 +599,13 @@ function geoFor(type){
   if(type==='bus'){det.push([box(d.W+.04,.9,d.L-1.4),0,2.5,-.3,GLASS],[box(d.W+.03,.22,d.L),0,1.45,0,DARK],[box(d.W-.2,.16,.1),0,3.0,d.L/2+.02,DARK]);}
   if(type==='fire'){det.push([box(d.W+.03,.7,1.7),0,2.12,2.15,GLASS],[box(d.W+.03,.2,d.L-.2),0,1.2,0,WHITE],[box(.1,.1,4.6),-.4,1.98,-1.0,[.8,.8,.84]],[box(.1,.1,4.6),.4,1.98,-1.0,[.8,.8,.84]]);
     for(let q=0;q<9;q++)det.push([box(.8,.05,.05),0,1.98,-3.1+q*.52,[.8,.8,.84]]);}
+  if(type==='scoot'){const sph=new THREE.SphereGeometry(.16,10,8);
+    det.push([box(.8,.06,.06),0,1.45,.55,DARK],[box(.07,.9,.07),0,1.0,.55,DARK],[box(.3,.5,.24),0,1.35,-.3,[.9,.4,.6]],[sph,0,1.76,-.28,[.95,.85,.2]],[box(.1,.55,.2),-.12,.9,-.2,PANT],[box(.1,.55,.2),.12,.9,-.2,PANT]);}
+  if(type==='amb'){det.push([box(d.W+.03,.65,1.3),0,2.0,1.95,GLASS],[box(d.W+.03,.26,d.L-.2),0,1.2,0,[.9,.1,.12]],[box(.1,.9,.9),d.W/2+.02,1.8,-1,[.9,.1,.12]],[box(.1,.9,.9),-d.W/2-.02,1.8,-1,[.9,.1,.12]],[box(.1,.3,.9),d.W/2+.02,1.8,-1,WHITE],[box(.1,.9,.3),d.W/2+.02,1.8,-1,WHITE],[box(.1,.3,.9),-d.W/2-.02,1.8,-1,WHITE],[box(.1,.9,.3),-d.W/2-.02,1.8,-1,WHITE]);}
+  if(type==='monster'){det.push([box(2.3,.25,1.6),0,1.3,.3,DARK],[box(.14,.14,3.4),-1.5,1.0,0,[.7,.7,.74]],[box(.14,.14,3.4),1.5,1.0,0,[.7,.7,.74]],[box(2.4,.14,.14),0,1.0,1.7,[.7,.7,.74]],[box(2.4,.14,.14),0,1.0,-1.7,[.7,.7,.74]],[box(.2,.7,.2),-1.3,1.7,2.2,[1,.8,.1]],[box(.2,.7,.2),1.3,1.7,2.2,[1,.8,.1]]);}
   const wheel=mergeList([[g.tire,0,0,0,TIRE],[g.hub,0,0,0,HUB]]);
   g.parts={body,det,head,tail};g.bodyG=mergeList(body);g.detG=mergeList(det);g.headG=mergeList(head);g.tailG=mergeList(tail);g.headTailG=mergeList(head.concat(tail));g.wheelG=wheel;
-  const lay=d.twoWheel?[[0,1],[0,-1]]:[[1,1],[-1,1],[1,-1],[-1,-1]];g.lay=lay;const wp=[];lay.forEach(([sx,sz])=>wp.push([wheel,sx*(d.W/2-.1),d.wr,sz*d.wb]));
+  const lay=d.twoWheel?[[0,1],[0,-1]]:[[1,1],[-1,1],[1,-1],[-1,-1]];g.lay=lay;const wxo=d.wxo||(d.W/2-.1);const wp=[];lay.forEach(([sx,sz])=>wp.push([wheel,sx*wxo,d.wr,sz*d.wb]));
   g.wheelPos=wp;g.detAllG=mergeList(det.concat(wp.map(w=>[w[0],w[1],w[2],w[3]])));
   return GEO[type]=g;
 }
@@ -602,11 +620,11 @@ function buildCar(type,color){
   addM(g.bodyG,bodyMat,1);addM(g.detG,matDet,1);addM(g.headG,matLamp,0);addM(g.tailG,tailMat,0);
   const wheels=[];
   g.lay.forEach(([sx,sz])=>{
-    const steer=new THREE.Group(),spin=new THREE.Group();steer.add(spin);steer.position.set(sx*(d.W/2-.1),d.wr,sz*d.wb);
+    const steer=new THREE.Group(),spin=new THREE.Group();steer.add(spin);steer.position.set(sx*(d.wxo||(d.W/2-.1)),d.wr,sz*d.wb);
     const t=new THREE.Mesh(g.wheelG,matTire);t.castShadow=SHADOWS;spin.add(t);tilt.add(steer);wheels.push({steer,spin,front:sz>0});
   });
   const blob=blobMesh(Math.max(d.W*1.5,1.4),d.L*1.25);
-  let sir=null;if(d.siren){const mk2=c=>new THREE.Mesh(new THREE.BoxGeometry(.7,.2,.3),new THREE.MeshBasicMaterial({color:c}));const r=mk2(0xff2020),bl=mk2(0x2060ff);r.position.set(-.5,2.62,2.15);bl.position.set(.5,2.62,2.15);tilt.add(r,bl);sir=[r,bl];}
+  let sir=null;if(d.siren){const mk2=c=>new THREE.Mesh(new THREE.BoxGeometry(.7,.2,.3),new THREE.MeshBasicMaterial({color:c}));const r=mk2(0xff2020),bl=mk2(0x2060ff);r.position.set(-.5,d.sirY||2.62,d.sirZ||2.15);bl.position.set(.5,d.sirY||2.62,d.sirZ||2.15);tilt.add(r,bl);sir=[r,bl];}
   return {root,tilt,def:d,type,bodyMat,tailMat,wheels,blob,spinA:0,sir,
     setBrake(b){this.tailMat.color.setHex(b?0xff2a1a:0x6a1010);},
     spinWheels(dist,steer){this.spinA+=dist/d.wr;for(const w of this.wheels){w.spin.rotation.x=this.spinA;if(w.front)w.steer.rotation.y=steer;}},
@@ -782,13 +800,13 @@ function stepCar(dt){
   const gasOn=inp.gas>0,wantN=inp.nitro>0&&car.nitro>0.01&&vF>2;
   car.nitroOn=wantN;
   if(!car.air){
-    const vmax=st.top*(car.nitroOn?st.nitM:1);let acc=0;
-    if(gasOn){acc+=vF<0?34*inp.gas:st.acc*(car.nitroOn?2.1:1)*Math.max(0,1-vF/vmax)*inp.gas;}
+    const vmax=st.top*WX.turbo*(car.nitroOn?st.nitM:1);let acc=0;
+    if(gasOn){acc+=vF<0?34*inp.gas:st.acc*WX.turbo*(car.nitroOn?2.1:1)*Math.max(0,1-vF/vmax)*inp.gas;}
     if(inp.brake>0){if(vF>0.8)acc-=34*inp.brake*(.6+.4*WX.grip);else acc-=(vF>-11?10:0)*inp.brake;}
     acc-=vF*(gasOn?.03:.16)+(Math.abs(vF)>.3?Math.sign(vF)*.7:-vF*2);
     if(inp.hb>0&&Math.abs(vF)>.3)acc-=Math.sign(vF)*Math.min(7,Math.abs(vF)/dt*.9);
     car.vx+=sn*acc*dt;car.vz+=cs*acc*dt;
-    if(car.nitroOn)car.nitro=Math.max(0,car.nitro-dt*.34*st.nit);else car.nitro=Math.min(1,car.nitro+dt*(car.drift>0.2?.14:.045));
+    if(CHEAT.nitro)car.nitro=1;else if(car.nitroOn)car.nitro=Math.max(0,car.nitro-dt*.34*st.nit);else car.nitro=Math.min(1,car.nitro+dt*(car.drift>0.2?.14:.045));
     const sp=Math.abs(vF);car.steer+=(inp.steer-car.steer)*Math.min(1,dt*(inp.steer===0?11:7.5));
     const delta=.52/(1+Math.pow(sp/14,2))*st.turn;
     let yawT=sp>.2?car.steer*Math.sign(vF||1)*sp*Math.tan(delta)/(d.wb*2):0;
@@ -830,7 +848,7 @@ function stepCar(dt){
     const tp=pitchG+clamp((car.brake?-.05:0)+(gasOn?.025:0),-.1,.1),tr=rollG+(d.lean?-clamp(car.yaw*car.vF*.011,-.6,.6):car.yaw*car.vF*.0035);
     const a=Math.min(1,dt*10),pn=nrm(car.pitch),rn=nrm(car.roll);car.pitch=pn+(tp-pn)*a;car.roll=rn+(tr-rn)*a;
   }else{
-    car.airT+=dt;car.vy-=GRAV*dt;car.y+=car.vy*dt;
+    car.airT+=dt;car.vy-=GRAV*WX.g*dt;car.y+=car.vy*dt;
     const pr=inp.pitch*5.6,rl=inp.roll*5.6;
     if(pr||rl){car.pitch+=pr*dt;car.roll+=rl*dt;car.accP+=pr*dt;car.accR+=rl*dt;}
     else{const hs=Math.hypot(car.vx,car.vz);const tp=Math.atan2(car.vy,Math.max(4,hs))*.8;if(Math.abs(car.accP)<.8&&Math.abs(car.accR)<.8){car.pitch+=(tp-car.pitch)*Math.min(1,dt*1.6);car.roll+=(0-car.roll)*Math.min(1,dt*1.2);}}
@@ -1166,6 +1184,7 @@ function endMissionCleanup(){if(typeof missionEnd==='function')missionEnd();MIS=
 function finishMission(M,ok,r){
   if(M.over)return;M.over=true;
   let coins=0,medal=0,line=r.line||'';
+  setTimeout(()=>{for(const f of MIS_L)f(M,ok,r.medal||(ok?1:0));},0);
   if(ok){medal=r.medal||1;coins=r.coins||0;
     addCoins(coins);
     const prev=S.medal[M.id]||0;if(medal>prev)S.medal[M.id]=medal;
@@ -1238,11 +1257,12 @@ const kb={},tk={},kb1={},kb2={};let camPress=false;
 const K1={KeyA:'left',KeyD:'right',KeyW:'gas',KeyS:'brake',Space:'hb',ShiftLeft:'nitro',KeyH:'horn'},K2={ArrowLeft:'left',ArrowRight:'right',ArrowUp:'gas',ArrowDown:'brake',Enter:'hb',ShiftRight:'nitro',Slash:'nitro',Numpad0:'hb'};
 const KMAP={ArrowLeft:'left',KeyA:'left',ArrowRight:'right',KeyD:'right',ArrowUp:'gas',KeyW:'gas',ArrowDown:'brake',KeyS:'brake',Space:'hb',ShiftLeft:'nitro',ShiftRight:'nitro',KeyH:'horn'};
 addEventListener('keydown',e=>{
+  if(e.target&&e.target.tagName==='INPUT')return;
   initAudio();const k=KMAP[e.code];if(k){kb[k]=true;if(STATE==='play'||STATE==='race2')e.preventDefault();}
   if(K1[e.code])kb1[K1[e.code]]=true;if(K2[e.code]){kb2[K2[e.code]]=true;if(STATE==='race2')e.preventDefault();}
   if(e.repeat)return;
   if(e.code==='KeyF'&&(STATE==='play'||STATE==='menu'||STATE==='pause'))toggleFS();
-  if(STATE==='play'){if(e.code==='KeyC')cycleCam();else if(e.code==='KeyR')respawnOnRoad();else if(e.code==='Escape'||e.code==='KeyP')pauseGame();else if(e.code==='KeyV'){OPT.mirror=OPT.mirror?0:1;applySettings();save();}}
+  if(STATE==='play'){if(e.code==='Backquote'){pauseGame();menuCheats();}else if(e.code==='KeyC')cycleCam();else if(e.code==='KeyR')respawnOnRoad();else if(e.code==='Escape'||e.code==='KeyP')pauseGame();else if(e.code==='KeyV'){OPT.mirror=OPT.mirror?0:1;applySettings();save();}}
   else if(STATE==='race2'){if(e.code==='Escape')pauseGame();else if(e.code==='KeyR')respawnP(0);else if(e.code==='Backspace'){respawnP(1);e.preventDefault();}}
   else if(STATE==='photo'){if(e.code==='Escape')exitPhoto();else if(e.code==='Enter')savePhoto();}
   else if(STATE==='pause'&&(e.code==='Escape'||e.code==='KeyP'))resumeGame();
@@ -1399,7 +1419,7 @@ function update(dt){
     if(car.stuckT===0)car.stuckMsg=false;
     if(car.y<-5||Math.abs(car.x)>BND+10||Math.abs(car.z)>BND+10)respawnOnRoad();
   }else{freeCoins.update(simTime,dt,70,()=>{});misCoins.update(simTime,dt,0,()=>{});}
-  if(!TWO)trafficUpdate(dt,simTime);updateLights(dt,simTime);updCones(dt);updParticles(dt);updMarkers(simTime);
+  if(!TWO&&!CHEAT.empty)trafficUpdate(dt,simTime);updateLights(dt,simTime);updCones(dt);updParticles(dt);updMarkers(simTime);
   for(const f of EXT_UPDATE)f(dt);
   if(!TWO)syncCarModel(dt);
   if(saveT>0){saveT-=dt;if(saveT<=0)save();}
@@ -1512,7 +1532,7 @@ function savePhoto(){
   cv.addEventListener('pointermove',e=>{if(!phDrag||STATE!=='photo')return;phYaw-=(e.clientX-phDrag.x)*.008;phPitch=clamp(phPitch+(e.clientY-phDrag.y)*.006,-.05,1.3);phDrag.x=e.clientX;phDrag.y=e.clientY;});
   const up=()=>{phDrag=null;};cv.addEventListener('pointerup',up);cv.addEventListener('pointercancel',up);
   cv.addEventListener('wheel',e=>{if(STATE==='photo'){phDist=clamp(phDist+e.deltaY*.01,4,22);e.preventDefault();}},{passive:false});
-  $('phSave').addEventListener('click',savePhoto);$('phExit').addEventListener('click',exitPhoto);
+  $('phSave').addEventListener('click',()=>savePhoto());$('phExit').addEventListener('click',exitPhoto);
   $('phZi').addEventListener('click',()=>{phDist=clamp(phDist-2,4,22);});$('phZo').addEventListener('click',()=>{phDist=clamp(phDist+2,4,22);});
   addEventListener('keydown',e=>{if(STATE!=='photo')return;if(e.code==='ArrowLeft')phYaw+=.1;else if(e.code==='ArrowRight')phYaw-=.1;else if(e.code==='ArrowUp')phPitch=clamp(phPitch+.05,-.05,1.3);else if(e.code==='ArrowDown')phPitch=clamp(phPitch-.05,-.05,1.3);});
 })();
@@ -1528,15 +1548,15 @@ var STATE='boot';
 const card=$('card'),overlay=$('overlay');
 function setGameState(s){
   STATE=s;const live=s==='play'||s==='race2';
-  document.body.classList.toggle('playing',live);document.body.classList.toggle('photo',s==='photo');document.body.classList.toggle('race2',s==='race2');
-  overlay.style.display=(live||s==='photo')?'none':'flex';overlay.classList.toggle('top',s==='garage'||s==='home');
+  document.body.classList.toggle('playing',live);document.body.classList.toggle('photo',s==='photo');document.body.classList.toggle('race2',s==='race2');document.body.classList.toggle('talk',s==='talk');
+  overlay.style.display=(live||s==='photo'||s==='talk')?'none':'flex';overlay.classList.toggle('top',s==='garage'||s==='home');
   if(live)camSnap=true;
 }
 function show(html){card.innerHTML=html;}
 function bind(id,fn){const e=$(id);if(e)e.addEventListener('click',()=>{initAudio();fn();});}
 const CTRL=TOUCH?'Wheel / buttons / tilt · GAS / BRAKE · 🅿 handbrake drift · ⚡ nitro · 📷 camera':'<b>W A S D</b> / arrows drive · <b>Space</b> drift · <b>Shift</b> nitro · <b>H</b> horn<br><b>C</b> camera · <b>V</b> rear view · <b>F</b> fullscreen · <b>R</b> respawn · <b>Esc</b> pause';
 function medalIcon(m){return ['—','🥉','🥈','🥇'][m||0];}
-function chips(){return '<div class="chips"><span class="chip">🪙 '+S.coins+'</span><span class="chip">🚗 '+CUR.def.name+'</span><span class="chip">🕒 '+fmtHour()+'</span></div>';}
+function chips(){return '<div class="chips"><span class="chip">🪙 '+S.coins+'</span><span class="chip">⭐ Lv '+lvlOf(S.xp).l+'</span><span class="chip">🚗 '+CUR.def.name+'</span><span class="chip">🕒 '+fmtHour()+'</span></div>';}
 function fmtHour(){const h=Math.floor(TOD.h),m=Math.floor((TOD.h-h)*60);return String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');}
 const MAIN_EXTRA=[];  // later stages push {id,label,fn}
 function menuMain(){
@@ -1575,7 +1595,7 @@ function menuSettings(){
     b('sQ','🖼 Graphics: '+QN[OPT.q])+
     (TOUCH?b('sSt','🎡 Steering: '+SN[OPT.steer])+b('sBt','🔘 Buttons: '+BN[OPT.btn]):b('sMs','🖱 Mouse steer: '+on(OPT.mouse))+b('sPad','🎮 Gamepad: '+on(OPT.pad)))+
     b('sAuto','⛽ Auto-gas: '+on(OPT.auto))+b('sAs','🛟 Driving assist: '+on(OPT.assist))+
-    b('sMir','🪞 Rear view: '+on(OPT.mirror))+b('sWx','🌦 Weather: '+WN[OPT.weather])+
+    b('sMir','🪞 Rear view: '+on(OPT.mirror))+b('sVo','🗣 Voice: '+on(OPT.voice))+b('sCh','🔑 Cheat codes')+b('sLg','🌐 Language: '+(S.lang?'हिंदी':'English'))+b('sWx','🌦 Weather: '+WN[OPT.weather])+
     (TOUCH?'':b('sFs','⛶ Fullscreen (F)'))+
     '</div><button class="go" id="bBack">← Back</button>');
   const t=(id,fn)=>bind(id,()=>{fn();applySettings();save();menuSettings();});
@@ -1583,8 +1603,8 @@ function menuSettings(){
   t('sQ',()=>{OPT.q=(OPT.q+1)%3;});
   t('sSt',()=>{OPT.steer=(OPT.steer+1)%3;if(OPT.steer===2&&typeof DeviceOrientationEvent!=='undefined'&&DeviceOrientationEvent.requestPermission)DeviceOrientationEvent.requestPermission().catch(()=>{});});
   t('sBt',()=>{OPT.btn=(OPT.btn+1)%3;});t('sMs',()=>{OPT.mouse=OPT.mouse?0:1;});t('sPad',()=>{OPT.pad=OPT.pad?0:1;});
-  t('sAuto',()=>{OPT.auto=OPT.auto?0:1;});t('sAs',()=>{OPT.assist=OPT.assist?0:1;});t('sMir',()=>{OPT.mirror=OPT.mirror?0:1;});t('sWx',()=>{OPT.weather=(OPT.weather+1)%3;});
-  bind('sFs',toggleFS);
+  t('sAuto',()=>{OPT.auto=OPT.auto?0:1;});t('sAs',()=>{OPT.assist=OPT.assist?0:1;});t('sMir',()=>{OPT.mirror=OPT.mirror?0:1;});t('sVo',()=>{OPT.voice=OPT.voice?0:1;try{window.speechSynthesis&&speechSynthesis.cancel();}catch(e){}});t('sWx',()=>{OPT.weather=(OPT.weather+1)%3;});
+  bind('sFs',toggleFS);t('sLg',()=>{S.lang^=1;});bind('sCh',menuCheats);
   bind('bBack',()=>PAUSED_FROM_PLAY?menuPause():menuMain());
 }
 let GSAVE=null;
@@ -1846,8 +1866,8 @@ MORDER.push('thief','drift');
 
 /* ---------- init + hooks ---------- */
 function initFeatures(){
-  buildHome();buildCams();initPeds();buildRain();applyWeather();
-  EXT_UPDATE.push(pedsUpdate,weatherUpdate,homeAmbient);EXT_PLAY.push(camsPlay,homePlay);
+  buildHome();buildCams();initPeds();buildRain();applyWeather();initNPCs();
+  EXT_UPDATE.push(pedsUpdate,weatherUpdate,homeAmbient,npcsUpdate);EXT_PLAY.push(camsPlay,homePlay,npcsPlay);
 }
 /* ================= Stage C: 2-player split-screen race (desktop) ================= */
 let R2=null;
@@ -1981,6 +2001,469 @@ function render2P(dt){
   swapIn(R.pl[0]);
 }
 if(!TOUCH)MAIN_EXTRA.push({id:'bR2',label:'👥 2-PLAYER RACE',fn:menuRace2});
+/* ================= Stage D: characters, story, XP, cheats ================= */
+const RANKS=['Rookie','Driver','Racer','Pro','Legend','City Hero'];
+function lvlOf(xp){let l=1,need=100;while(xp>=need){xp-=need;l++;need=100+(l-1)*60;}return{l,cur:xp,need};}
+const rankOf=l=>RANKS[Math.min(RANKS.length-1,Math.floor((l-1)/3))];
+function addXP(n){const b=lvlOf(S.xp).l;S.xp+=n;const a=lvlOf(S.xp).l;if(a>b){toast('⬆ LEVEL UP! Level '+a+' — '+rankOf(a),3200);sfx('win');}saveSoon();}
+
+/* ---------- characters ---------- */
+const SKIN=[[.95,.78,.62],[.85,.63,.45],[.65,.45,.3],[.5,.33,.22]];
+const NPCS={
+ mira:{name:'Mayor Mira',em:'👩‍💼',spot:[3,3,23],shirt:[.55,.2,.5],pants:[.2,.2,.3],skin:0,hair:[.1,.07,.07],hat:'bun',pitch:1.05,rate:.95,
+  bark:['Drive safe, citizen! 🌆','Sunny City loves careful drivers.'],chat:['The city looks lovely today, no?','Remember: green light means go, red means wait. Even for the Mayor!']},
+ tara:{name:'Chef Tara',em:'👩‍🍳',spot:[2,2,69],shirt:[.96,.96,.96],pants:[.25,.25,.3],skin:1,hair:[.1,.07,.05],hat:'chef',pitch:1.25,rate:1.05,
+  bark:['Fresh pizza! Fresh pizza! 🍕','Mmm... can you smell that?'],chat:['My secret ingredient? Love... and extra cheese!','Pizza tastes best when it is hot, hot, hot!']},
+ raju:{name:'Raju Mechanic',em:'👨‍🔧',spot:[4,4,115],shirt:[.2,.4,.8],pants:[.15,.18,.3],skin:2,hair:[.08,.06,.05],hat:'cap',pitch:.7,rate:.95,
+  bark:['Engine sounds healthy today!','Need an upgrade? Visit the garage!'],chat:['Upgrade your tires and the car sticks to the road like a gecko!','A good engine purrs like a kitten. A BAD one... sneezes.']},
+ rocky:{name:'Rocky Racer',em:'🏎️',spot:[4,1,23],shirt:[.9,.2,.2],pants:[.15,.15,.2],skin:1,hair:[.1,.1,.1],hat:'helmet',pitch:1.1,rate:1.2,
+  bark:['Vroom vroom! Race me!','Nitro is my best friend ⚡'],chat:['Tip: handbrake + steering = DRIFT. Smoke everywhere!','I have won 37 trophies. And one very ugly mug.']},
+ sita:{name:'Granny Sita',em:'👵',spot:[1,4,69],shirt:[.9,.6,.2],pants:[.5,.3,.3],skin:1,hair:[.85,.85,.88],hat:'bun',pitch:1.15,rate:.85,
+  bark:['Slow down, beta!','In my days, cars had no radio!'],chat:['Beta, always eat your vegetables and wear your seatbelt.','I once rode a camel to market. Faster than this traffic!']},
+ neel:{name:'Dr. Neel',em:'👨‍⚕️',spot:[5,2,115],shirt:[.92,.94,.96],pants:[.2,.3,.4],skin:2,hair:[.08,.07,.07],hat:null,pitch:.9,rate:.95,
+  bark:['Health tip: drink water! 💧','Doctor on duty 🩺'],chat:['An apple a day keeps the doctor away. Not that I mind visitors!','Brush twice a day, drive once carefully.']},
+ pinky:{name:'Pinky',em:'👧',spot:[3,4,150],shirt:[.95,.4,.65],pants:[.3,.3,.7],skin:1,hair:[.1,.07,.05],hat:'bun',kid:1,pitch:1.8,rate:1.15,
+  bark:['Whoa, nice car!!','Can I honk? Pleeease!'],chat:['I want to be a racer when I grow up! Or an astronaut. Or both.','My dog is faster than your car! ...Okay maybe not.']},
+ joe:{name:'Uncle Joe',em:'👴',spot:[4,3,23],shirt:[.4,.55,.4],pants:[.3,.3,.3],skin:2,hair:[.8,.8,.82],hat:'cap',pitch:.6,rate:.85,
+  bark:['Back in my day we rode bullock carts!','Mind the potholes!'],chat:['Cars these days have no horns like they used to. Pom pom!','I walk 10,000 steps daily. Mostly to the tea stall.']},
+ zoya:{name:'Zoya',em:'💃',spot:[2,3,69],shirt:[.95,.3,.5],pants:[.25,.2,.45],skin:1,hair:[.08,.05,.05],hat:'bun',dance:1,pitch:1.35,rate:1.1,
+  bark:['💃 Dance dance dance!','Join the street party!'],chat:['Music makes the whole city move. Even the buses!','Can you drift in rhythm? I dare you!']},
+ max:{name:'Skater Max',em:'🛹',spot:[5,3,115],shirt:[.2,.7,.75],pants:[.2,.2,.25],skin:3,hair:[.1,.06,.05],hat:'cap',pitch:1.2,rate:1.25,
+  bark:["Bet you can't land a flip 🛹",'Ramps are life!'],chat:['Dude! The big ramp at the plaza is EPIC.','Jump high, land soft, repeat.']},
+};
+const STORY=[
+ {npc:'mira',title:'Welcome to Sunny City',mission:null,
+  intro:["Welcome to Sunny City, young driver! I am Mayor Mira. 🌆","Our city needs a careful, friendly driver — one who stops at red lights AND says thank you to Granny.","Are you ready to become our City Hero?"],
+  choices:[{t:"Yes, let's go! 🚗",say:["Wonderful spirit! Here is a little welcome gift."]},{t:'Tell me more 🤔',say:["Simple: help people around the city, win medals, earn coins. Here is a gift for listening so well!"]}],
+  reward:{c:40,xp:60},hint:'Next: find Chef Tara — look for the ❗ marker!'},
+ {npc:'tara',title:'Hot Pizza Express',mission:'pizza',
+  intro:['Namaste! Chef Tara here. My pizza shop is crazy busy today! 🍕','I need 3 pizzas delivered before they get cold. Can you help?'],accept:"Yes, I'll deliver!",
+  retry:['Back again? Shall we try the pizza delivery once more?'],outro:['Still piping hot! Everyone loved it. 😋','You drive like a pro. Here, you earned this!'],reward:{c:80,xp:120},hint:'Next: Raju the mechanic needs help.'},
+ {npc:'raju',title:'The Lost Bolts',mission:'coin',
+  intro:['Arre bhai! My shiny tool-bolts fell out of my truck and scattered all over town! 🔩','Collect 30 of them in 80 seconds — they glow gold on the map!'],accept:'Bolts hunt, start!',
+  retry:['The bolts are still out there! Want another go?'],outro:['Every single bolt! Fantastic. Now choose your thank-you gift:'],pick:[{t:'🔧 Free engine upgrade',r:{upE:1}},{t:'🪙 100 coins',r:{c:100}}],reward:{xp:140},hint:'Next: Rocky the racer wants a challenge.'},
+ {npc:'rocky',title:'Beat the Clock',mission:'race',
+  intro:["Hey! I'm Rocky. They say I'm the fastest in town. 😎","Think you can beat the clock on the city race? Use your nitro!"],accept:"You're on!",
+  retry:['Ha! Need another try? Rocky is waiting.'],outro:['Whoa... okay, you ARE fast. I respect that.','Take this little Scooty — every racer starts small!'],reward:{c:120,xp:160,car:7},hint:'Next: Granny Sita needs a gentle driver.'},
+ {npc:'sita',title:'Gentle Rides',mission:'taxi',
+  intro:["Beta, my knees are not what they used to be. 👵","Please drive my friends around — slowly and safely. Bumps give them tummy aches!"],accept:'Happy to help, Granny!',
+  retry:['Beta, will you drive my friends once more?'],outro:['Such a gentle driver! God bless you, beta.','Take this — I planted these flowers for your garden.'],reward:{c:100,xp:160,home:1},hint:'Next: Skater Max has a stunt dare.'},
+ {npc:'max',title:'Stunt Dare',mission:'stunt',
+  intro:["Yo! I'm Max. 🛹","Bet you can't ride the plaza ramps and land big flips. 100 seconds. Go!"],accept:"Dare accepted!",
+  retry:['Dude, the ramps are waiting. Again?'],outro:['SICK! That was the best flip I ever saw. 🤯','Respect. Here is a bonus!'],reward:{c:150,xp:200},hint:'Next: Dr. Neel has an emergency!'},
+ {npc:'neel',title:'The Runaway Bag',mission:'thief',
+  intro:['Oh no, oh no! Someone drove off with my medicine bag in a purple car! 😱','Please catch up and stay close until they stop. No crashing — just chase!'],accept:"I'll catch them!",
+  retry:['The purple car is still out there. Try again?'],outro:['You got my bag back! Thank you so much.','Please take my Ambulance — you will need it in the city!'],reward:{c:120,xp:220,car:8},hint:'Last: Mayor Mira has a final test.'},
+ {npc:'mira',title:'City Hero',mission:'park',
+  intro:['You have helped everyone in Sunny City! 🌟','One last test for a City Hero: park perfectly in 5 bays at the new car park. Slow and straight!'],accept:'Parking time!',
+  retry:['Shall we try the parking test again, hero?'],outro:["PERFECT! By the power of Sunny City, I name you our CITY HERO! 🎉","Here is the keys to our biggest vehicle — the Monster Truck. Drive it with pride!"],reward:{c:300,xp:300,car:9},hint:'You are the City Hero! 🏆'},
+];
+const npcGroups={};
+function ringPos(bi,bj,u){const H=23,s=Math.floor(u/46)%4,f=u%46,cx=bc(bi),cz=bc(bj);let x,z,nx,nz;
+  if(s===0){x=-H+f;z=-H;nx=0;nz=-1;}else if(s===1){x=H;z=-H+f;nx=1;nz=0;}else if(s===2){x=H-f;z=H;nx=0;nz=1;}else{x=-H;z=H-f;nx=-1;nz=0;}
+  return{x:cx+x+nx*.6,z:cz+z+nz*.6,nx,nz};}
+function mkTag(text){const c=mkCanvas(256,64),g=c.getContext('2d');g.fillStyle='rgba(10,16,40,.78)';g.beginPath();g.roundRect?g.roundRect(4,8,248,48,16):g.rect(4,8,248,48);g.fill();g.fillStyle='#fff';g.font='bold 28px system-ui,sans-serif';g.textAlign='center';g.textBaseline='middle';g.fillText(text,128,33);
+  const t=new THREE.CanvasTexture(c);const s=new THREE.Sprite(new THREE.SpriteMaterial({map:t,transparent:true,depthWrite:false}));s.scale.set(2.7,.68,1);return s;}
+function bubbleTex(text){
+  const c=mkCanvas(400,150),g=c.getContext('2d');g.font='bold 26px system-ui,sans-serif';
+  const words=text.split(' '),lines=[];let cur='';for(const w of words){const t=cur?cur+' '+w:w;if(g.measureText(t).width>360&&cur){lines.push(cur);cur=w;}else cur=t;}lines.push(cur);
+  const h=Math.min(130,24+lines.length*32);g.clearRect(0,0,400,150);g.fillStyle='rgba(255,255,255,.96)';g.beginPath();g.roundRect?g.roundRect(8,6,384,h,20):g.rect(8,6,384,h);g.fill();
+  g.beginPath();g.moveTo(180,h+5);g.lineTo(200,h+22);g.lineTo(220,h+5);g.fill();
+  g.fillStyle='#1a2040';g.textAlign='center';g.textBaseline='top';lines.slice(0,3).forEach((l,i)=>g.fillText(l,200,16+i*32));
+  return new THREE.CanvasTexture(c);}
+function buildNPC(id){
+  const d=NPCS[id],sk=SKIN[d.skin],k=d.kid?.78:1,L=[];
+  L.push([_bx(.17,.8,.26),-.11,.4,0,d.pants],[_bx(.17,.8,.26),.11,.4,0,d.pants],[_bx(.58,.72,.36),0,1.16,0,d.shirt],[new THREE.SphereGeometry(.22,12,10),0,1.8,0,sk],[_bx(.06,.06,.03),-.08,1.84,.2,[.05,.05,.07]],[_bx(.06,.06,.03),.08,1.84,.2,[.05,.05,.07]],[_bx(.14,.6,.17),-.38,1.12,0,d.shirt]);
+  const hair=d.hair;
+  if(d.hat==='chef'){L.push([_bx(.4,.34,.4),0,2.18,0,[1,1,1]],[new THREE.SphereGeometry(.26,10,8),0,2.4,0,[1,1,1]]);}
+  else if(d.hat==='cap'){L.push([_bx(.46,.12,.46),0,2.0,0,[.8,.2,.2]],[_bx(.4,.05,.28),0,1.98,.3,[.7,.15,.15]]);}
+  else if(d.hat==='helmet'){L.push([new THREE.SphereGeometry(.27,12,10),0,1.88,0,[.95,.2,.15]],[_bx(.34,.1,.06),0,1.84,.24,[.1,.1,.15]]);}
+  else if(d.hat==='bun'){L.push([_bx(.46,.14,.42),0,2.0,-.02,hair],[new THREE.SphereGeometry(.13,8,6),0,2.12,-.16,hair]);}
+  else L.push([_bx(.46,.14,.42),0,2.0,-.02,hair]);
+  const body=new THREE.Mesh(mergeList(L),matDet);body.castShadow=true;
+  const arm=new THREE.Mesh(mergeList([[_bx(.14,.6,.17).translate(0,-.3,0),0,0,0,d.shirt],[new THREE.SphereGeometry(.09,8,6),0,-.62,0,sk]]),matDet);
+  const pivot=new THREE.Group();pivot.position.set(.38,1.42,0);pivot.add(arm);
+  const root=new THREE.Group(),inner=new THREE.Group();inner.scale.setScalar(k);inner.add(body,pivot);root.add(inner);
+  const tag=mkTag(d.name);tag.position.set(0,2.95*k,0);root.add(tag);
+  const q=new THREE.Sprite(new THREE.SpriteMaterial({map:emojiTex('❗'),transparent:true,depthWrite:false}));q.scale.set(1.5,1.5,1);q.position.set(0,3.7*k,0);q.visible=false;root.add(q);
+  const bub=new THREE.Sprite(new THREE.SpriteMaterial({transparent:true,depthWrite:false}));bub.scale.set(6.4,2.4,1);bub.position.set(0,5.4*k,0);bub.visible=false;root.add(bub);
+  world.add(root);
+  return{id,d,root,inner,pivot,tag,q,bub,u:d.spot[2],ph:Math.random()*6,cool:0,barkT:5+Math.random()*8,showT:0,x:0,z:0,mov:0,hd:0};
+}
+const NPCL=[];
+function initNPCs(){for(const id in NPCS){const n=buildNPC(id);npcGroups[id]=n;NPCL.push(n);}}
+function currentChap(){return STORY[S.story.ch]||null;}
+function npcPos(n,t){const d=n.d.spot,u=d[2]+Math.sin(t*.25+n.ph)*3.2;const p=ringPos(d[0],d[1],u);return{p,u,mv:Math.cos(t*.25+n.ph)>0?1:-1,sp:Math.abs(Math.cos(t*.25+n.ph))};}
+let npcT=0;
+function npcsUpdate(dt){
+  npcT+=dt;const ch=currentChap();
+  for(const n of NPCL){
+    const {p,sp}=npcPos(n,npcT);n.x=p.x;n.z=p.z;
+    const dx=car.x-p.x,dz=car.z-p.z,dist=Math.hypot(dx,dz);
+    n.root.visible=dist<140;if(!n.root.visible)continue;
+    const near=dist<16;
+    // facing: toward player when near, else along road
+    const want=near?Math.atan2(dx,dz):Math.atan2(p.nx,p.nz);n.hd+=angDiff(n.hd,want)*Math.min(1,dt*6);
+    n.root.position.set(p.x,SIDE_H,p.z);n.root.rotation.y=n.hd;
+    let bob=Math.abs(Math.sin(npcT*2+n.ph))*.03,spin=0;
+    if(n.d.dance){bob=Math.abs(Math.sin(npcT*6+n.ph))*.25;n.inner.rotation.y=Math.sin(npcT*3)*.6;n.pivot.rotation.z=-2.2+Math.sin(npcT*8)*.5;}
+    else{n.inner.rotation.y=0;n.pivot.rotation.z=near?-2.4+Math.sin(npcT*9+n.ph)*.45:Math.sin(npcT*2+n.ph)*.08;if(sp>.5)bob=Math.abs(Math.sin(npcT*7+n.ph))*.06;}
+    n.inner.position.y=bob;
+    n.tag.visible=dist<55;
+    const act=ch&&ch.npc===n.id&&S.story.st!==1;n.q.visible=!!act&&dist<90&&!MIS;if(n.q.visible){n.q.position.y=(3.7+Math.sin(npcT*3)*.15)*(n.d.kid?.78:1);}
+    // ambient bubble
+    if(n.showT>0){n.showT-=dt;if(n.showT<=0)n.bub.visible=false;}
+    else if(near&&dist>9&&STATE==='play'){n.barkT-=dt;if(n.barkT<=0){n.barkT=16+Math.random()*10;
+      const line=act?'Hey you! Come talk to me! 👋':n.d.bark[Math.floor(Math.random()*n.d.bark.length)];
+      if(n.bub.material.map)n.bub.material.map.dispose();n.bub.material.map=bubbleTex(line);n.bub.material.needsUpdate=true;n.bub.visible=true;n.showT=3.6;}}
+  }
+}
+function npcsPlay(dt){
+  if(MIS||STATE!=='play')return;
+  for(const n of NPCL){
+    if(n.cool>simTime)continue;
+    const dist=Math.hypot(car.x-n.x,car.z-n.z);
+    if(dist<9&&car.sp<3.5&&!car.air){talkTo(n.id);return;}
+  }
+  // quest guidance marker
+  qT-=dt;if(qT<=0){qT=1;const ch=currentChap();
+    if(ch){const n=npcGroups[ch.npc];const t=TARGETS[0];if(!t||t.quest){if(!t||Math.hypot(t.x-n.x,t.z-n.z)>1)setTargets([{x:n.x,z:n.z,icon:'❗',color:0xffd34d,ringR:4,quest:1}]);}}
+    else if(TARGETS[0]&&TARGETS[0].quest)setTargets([]);}
+}
+let qT=0;
+
+/* ---------- dialogue ---------- */
+let DLG=null;
+function speak(text,npc){
+  if(!OPT.voice||!window.speechSynthesis||!window.SpeechSynthesisUtterance)return;
+  try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text.replace(/[\u{1F000}-\u{1FFFF}☀-➿️‍]/gu,''));
+    u.lang=S.lang?'hi-IN':'en-IN';u.pitch=npc.pitch||1;u.rate=npc.rate||1;u.volume=S.sound?1:0;
+    const vs=speechSynthesis.getVoices();const v=vs.find(x=>(S.lang?/hi[-_]IN/i:/en[-_]IN/i).test(x.lang))||vs.find(x=>/^en/i.test(x.lang));if(v)u.voice=v;speechSynthesis.speak(u);}catch(e){}
+}
+function openDlg(id,lines,opts){
+  const n=NPCS[id];DLG={id,n,lines,i:0,opts:opts||{},ch:0,full:false};
+  setGameState('talk');$('dAv').textContent=n.em;$('dName').textContent=n.name;showLine();
+}
+function showLine(){const D=DLG;D.ch=0;D.full=false;$('dTxt').textContent='';$('dBtns').innerHTML='';speak(D.lines[D.i],D.n);}
+function dlgTick(dt){
+  const D=DLG;if(!D||STATE!=='talk')return;
+  if(!D.full){D.ch+=dt*55;const line=D.lines[D.i];const k=Math.min(line.length,Math.floor(D.ch));$('dTxt').textContent=line.slice(0,k);if(k>=line.length){D.full=true;dlgButtons();}}
+}
+function dlgButtons(){
+  const D=DLG,b=$('dBtns');b.innerHTML='';
+  const add=(t,fn,alt)=>{const e=document.createElement('button');e.textContent=(S.lang&&HI_CHAT[t])||t;if(alt)e.className='alt';e.addEventListener('click',ev=>{ev.stopPropagation();initAudio();fn();});b.appendChild(e);};
+  if(D.i<D.lines.length-1)add(S.lang?'आगे ▶':'Next ▶',dlgNext);
+  else if(D.opts.choices)D.opts.choices.forEach((c,q)=>add(c.t,()=>closeDlg(c.fn),q>0));
+  else add(S.lang?'ठीक ✔':'OK ✔',()=>closeDlg(D.opts.onEnd));
+}
+function dlgNext(){const D=DLG;if(!D)return;if(!D.full){D.full=true;D.ch=1e9;$('dTxt').textContent=D.lines[D.i];dlgButtons();return;}
+  if(D.i<D.lines.length-1){D.i++;showLine();}else{const b=$('dBtns').firstElementChild;if(b&&!D.opts.choices)b.click();}}
+function closeDlg(fn){
+  const D=DLG;if(!D)return;DLG=null;try{window.speechSynthesis&&speechSynthesis.cancel();}catch(e){}
+  NPCS[D.id].cool=0;const nn=npcGroups[D.id];nn.cool=simTime+(D.quest?4:18);
+  $('dTxt').textContent='';setGameState('play');if(fn)fn();
+}
+$('dlg').addEventListener('click',dlgNext);
+addEventListener('keydown',e=>{if(STATE!=='talk')return;if(e.code==='Space'||e.code==='Enter'){e.preventDefault();dlgNext();}else if(e.code==='Escape'){closeDlg();}});
+EXT_UPDATE.push(dlgTick);
+
+/* ---------- story logic ---------- */
+function applyReward(r){
+  if(!r)return;const parts=[];
+  if(r.c){addCoins(r.c);parts.push('+🪙'+r.c);}
+  if(r.xp){addXP(r.xp);parts.push('+'+r.xp+' XP');}
+  if(r.car!==undefined&&!S.own[r.car]){S.own[r.car]=1;parts.push('🎁 '+CT[CT_IDS[r.car]].name+' unlocked!');}
+  if(r.home!==undefined&&!S.home[r.home]){S.home[r.home]=1;applyHome();parts.push('🎁 '+HDEC[r.home].n+' for My Home');}
+  if(r.upE){const U=getUp(S.car);if(U.e<3){U.e++;refreshStats();parts.push('🔧 Engine upgraded!');}else{addCoins(100);parts.push('+🪙100');}}
+  if(parts.length)toast(parts.join('  ·  '),3600);
+}
+function completeChapter(extra){
+  const ch=currentChap();if(!ch)return;
+  applyReward(ch.reward);applyReward(extra);
+  S.story.ch++;S.story.st=0;sfx('win');confetti(car.x,car.y+2,car.z,60);
+  const nx=currentChap();if(!nx){S.hero=1;setTimeout(()=>toast(S.lang?'🏆 तुम सनी सिटी के सिटी हीरो हो! 🏆':'🏆 You are the CITY HERO of Sunny City! 🏆',4500),3700);}
+  else if(ch.hint)setTimeout(()=>toast((S.lang&&HI_CHAT[ch.hint])||ch.hint,3800),3700);
+  save();qT=0;if(TARGETS[0]&&TARGETS[0].quest)setTargets([]);
+}
+function talkTo(id){
+  const ch=currentChap();
+  if(ch&&ch.npc===id){
+    const st=S.story.st;
+    if(st===0){
+      if(!ch.mission)openDlg(id,ch.intro,{choices:ch.choices.map(c=>({t:c.t,fn:()=>openDlg(id,c.say,{onEnd:()=>completeChapter()})}))});
+      else openDlg(id,ch.intro,{choices:[{t:ch.accept||'Yes!',fn:()=>{S.story.st=1;save();startMission(ch.mission);}},{t:'Maybe later',fn:()=>{}}]});
+    }else if(st===1){
+      openDlg(id,ch.retry,{choices:[{t:'Yes, again!',fn:()=>startMission(ch.mission)},{t:'Not now',fn:()=>{}}]});
+    }else{
+      if(ch.pick)openDlg(id,ch.outro,{choices:ch.pick.map(p=>({t:p.t,fn:()=>completeChapter(p.r)}))});
+      else openDlg(id,ch.outro,{onEnd:()=>completeChapter()});
+    }
+    if(DLG)DLG.quest=1;return;
+  }
+  const n=NPCS[id];let lines;
+  const idx=STORY.findIndex((c,i)=>c.npc===id&&i>=S.story.ch);
+  if(idx>=0&&ch)lines=['Hello! I will need your help soon. ✨',S.lang?NPCS[ch.npc].name+' से पहले मिलो — ❗ का निशान ढूँढो।':'First, go and see '+NPCS[ch.npc].name+' — look for the ❗ marker.'];
+  else lines=[n.chat[Math.floor(Math.random()*n.chat.length)]];
+  openDlg(id,lines,{});
+}
+MIS_L.push((M,ok,medal)=>{
+  if(!ok)return;addXP([0,40,80,120][medal||1]);
+  const ch=currentChap();if(ch&&S.story.st===1&&ch.mission===M.id){S.story.st=2;save();toast('✅ Task done! Go back to '+NPCS[ch.npc].name+' ❗',3600);}
+  if(typeof TOUCH!=='undefined')save();
+});
+function questText(){const ch=currentChap();const L=lvlOf(S.xp);
+  let q;if(!ch)q='🏆 City Hero!';else if(S.story.st===0)q='📖 Talk to '+NPCS[ch.npc].name+' ❗';else if(S.story.st===1)q='📖 '+MDEF[ch.mission].name+' (retry: talk to '+NPCS[ch.npc].name+')';else q='📖 Return to '+NPCS[ch.npc].name+' ✅';
+  return '⭐ Lv '+L.l+' '+rankOf(L.l)+'<br>'+q;}
+let hudQT=0;EXT_UPDATE.push(dt=>{hudQT-=dt;if(hudQT<=0){hudQT=.5;const e=$('quest');if(e)e.innerHTML=(STATE==='play'&&!MIS)?questText():'';}});
+function menuStory(){
+  const cur=S.story.ch;
+  const rows=STORY.map((c,i)=>'<div style="display:flex;gap:8px;padding:5px 2px;text-align:left;opacity:'+(i>cur?.45:1)+'"><span>'+(i<cur?'✅':i===cur?'➡️':'🔒')+'</span><span><b>'+(i+1)+'. '+c.title+'</b><br><small>'+NPCS[c.npc].name+(c.mission?' · '+MDEF[c.mission].name:'')+'</small></span></div>').join('');
+  const L=lvlOf(S.xp);
+  show('<h2>📖 Story</h2><div class="chips"><span class="chip">⭐ Lv '+L.l+' · '+rankOf(L.l)+'</span><span class="chip">XP '+L.cur+'/'+L.need+'</span></div><div style="max-height:46vh;overflow:auto;margin:6px 0">'+rows+'</div><p class="sub" style="margin:4px 0">'+(S.hero?'🏆 You are the City Hero!':'Drive near the ❗ character and stop to talk.')+'</p><button class="go" id="bFree">▶ Play</button><button class="go dark" id="bBack">← Back</button>');
+  bind('bFree',()=>{if(MIS)endMissionCleanup();startPlay();});bind('bBack',()=>PAUSED_FROM_PLAY?menuPause():menuMain());
+}
+MAIN_EXTRA.splice(0,0,{id:'bStory',label:()=>'📖 STORY · Ch '+Math.min(S.story.ch+1,STORY.length)+'/'+STORY.length,fn:menuStory});
+
+/* ---------- cheat codes ---------- */
+const CHEATS={
+ MONEY:['+500 coins',()=>addCoins(500)],RICH:['+5000 coins',()=>addCoins(5000)],
+ GARAGE:['unlock all cars',()=>{S.own=S.own.map(()=>1);}],
+ NITRO:['infinite nitro (toggle)',()=>{CHEAT.nitro^=1;return CHEAT.nitro?'ON':'OFF';}],
+ TURBO:['speed boost x1.6 (toggle)',()=>{WX.turbo=WX.turbo>1?1:1.6;return WX.turbo>1?'ON':'OFF';}],
+ MOON:['low gravity (toggle)',()=>{WX.g=WX.g<1?1:.35;return WX.g<1?'ON':'OFF';}],
+ RAINBOW:['rainbow car (toggle)',()=>{CHEAT.rainbow^=1;if(!CHEAT.rainbow)CUR.model.bodyMat.color.setHex(COLORS[S.col[CUR.idx]||0]);return CHEAT.rainbow?'ON':'OFF';}],
+ GOLDEN:['golden car',()=>{CHEAT.rainbow=0;CUR.model.bodyMat.color.setHex(0xffc83d);CUR.model.bodyMat.shininess=140;}],
+ EMPTY:['no traffic (toggle)',()=>{CHEAT.empty^=1;if(CHEAT.empty)for(const t of TRAFFIC)t.m.root.visible=false;return CHEAT.empty?'ON':'OFF';}],
+ DAY:['noon',()=>{gameHour=12;applyTOD(12);}],NIGHT:['midnight',()=>{gameHour=23;applyTOD(23);}],SUNSET:['sunset',()=>{gameHour=18.2;applyTOD(18.2);}],
+ RAIN:['rain',()=>{OPT.weather=1;applySettings();}],FOG:['fog',()=>{OPT.weather=2;applySettings();}],CLEAR:['clear weather',()=>{OPT.weather=0;applySettings();}],
+ LEVELUP:['+1 level',()=>{addXP(lvlOf(S.xp).need-lvlOf(S.xp).cur);}],
+ RESET:['turn all cheats off',()=>{CHEAT.nitro=CHEAT.rainbow=CHEAT.empty=0;WX.turbo=1;WX.g=1;CUR.model.bodyMat.color.setHex(COLORS[S.col[CUR.idx]||0]);CUR.model.bodyMat.shininess=70;}],
+};
+function runCheat(code){
+  code=(code||'').trim().toUpperCase();const c=CHEATS[code];
+  if(!c)return {ok:0,msg:'Unknown code. Try one from the list!'};
+  const r=c[1]();save();return {ok:1,msg:'🔑 '+code+' — '+c[0]+(r?': '+r:'')};
+}
+function menuCheats(){
+  const list=Object.keys(CHEATS).map(k=>'<b>'+k+'</b> '+CHEATS[k][0]).join(' · ');
+  show('<h2>🔑 Cheat Codes</h2><input id="cin" maxlength="14" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="TYPE CODE">'+
+   '<div id="cmsg" class="small" style="min-height:22px;margin:6px 0"></div><button class="go" id="cGo">Enter ✔</button><div class="small" style="text-align:left;margin:8px 0;line-height:1.7;max-height:26vh;overflow:auto">'+list+'</div><button class="go dark" id="bBack">← Back</button>');
+  const go=()=>{const r=runCheat($('cin').value);$('cmsg').textContent=r.msg;$('cmsg').style.color=r.ok?'#7dff9a':'#ff9a9a';if(r.ok){sfx('ok');$('cin').value='';$('coinsP').textContent='🪙 '+S.coins;}};
+  bind('cGo',go);$('cin').addEventListener('keydown',e=>{if(e.key==='Enter')go();});
+  bind('bBack',()=>PAUSED_FROM_PLAY?menuPause():menuMain());
+  setTimeout(()=>{try{$('cin').focus();}catch(e){}},60);
+}
+EXT_UPDATE.push(dt=>{if(CHEAT.rainbow&&CUR&&STATE!=='boot')CUR.model.bodyMat.color.setHSL((simTime*.3)%1,.85,.55);});
+/* ================= Stage E: Road Quiz, Photo Challenges, Hindi/English ================= */
+S.lang=S.lang||0;S.quiz=S.quiz||{best:0,done:0};S.shots=S.shots||{};
+const LG=(a,b)=>S.lang?b:a;
+const QZ=[
+ ['🛑','What does a STOP sign mean?','STOP साइन का क्या मतलब है?',['Slow down','Stop fully','Honk','Go fast'],['धीरे चलो','पूरा रुको','हॉर्न बजाओ','तेज़ चलो'],1],
+ ['🔴','Red traffic light means…','लाल बत्ती का मतलब…',['Go','Stop','Turn only','Speed up'],['चलो','रुको','सिर्फ मुड़ो','तेज़ करो'],1],
+ ['🟢','Green light means…','हरी बत्ती का मतलब…',['Stop','Wait','Go (if clear)','Park'],['रुको','इंतज़ार','चलो (रास्ता साफ हो तो)','पार्क करो'],2],
+ ['🟡','Yellow light means…','पीली बत्ती का मतलब…',['Get ready to stop','Go faster','Honk','Reverse'],['रुकने के लिए तैयार','तेज़ चलो','हॉर्न','पीछे चलो'],0],
+ ['🚸','Children crossing sign. You should…','बच्चों के क्रॉसिंग का साइन। आपको…',['Speed up','Slow down and watch','Honk loudly','Ignore it'],['तेज़ चलना','धीरे चलना, ध्यान देना','ज़ोर से हॉर्न','अनदेखा करना'],1],
+ ['🚶','Who can use the zebra crossing first?','ज़ेबरा क्रॉसिंग पर पहले कौन?',['Cars','Walking people','Bikes','Nobody'],['गाड़ियाँ','पैदल चलने वाले','बाइक','कोई नहीं'],1],
+ ['🅿️','Letter “P” sign means…','“P” साइन का मतलब…',['Police','Parking','Petrol','Pedestrian'],['पुलिस','पार्किंग','पेट्रोल','पैदल'],1],
+ ['🚑','An ambulance with siren comes behind you. You…','पीछे से सायरन वाली एम्बुलेंस आए तो…',['Block it','Give way','Race it','Stop in the middle'],['रोको','रास्ता दो','रेस लगाओ','बीच में रुक जाओ'],1],
+ ['🔒','Why wear a seat belt?','सीट बेल्ट क्यों लगाएँ?',['Looks cool','To stay safe','For speed','No reason'],['अच्छा दिखता है','सुरक्षा के लिए','स्पीड के लिए','कोई कारण नहीं'],1],
+ ['🪖','Who must wear a helmet?','हेलमेट कौन पहने?',['Bike riders','Only kids','Only bus drivers','Nobody'],['बाइक चलाने वाले','सिर्फ बच्चे','सिर्फ बस ड्राइवर','कोई नहीं'],0],
+ ['🌧️','In heavy rain you should drive…','तेज़ बारिश में गाड़ी…',['Faster','Slower, keep distance','Same speed','With eyes closed'],['तेज़ चलाओ','धीरे, दूरी रखकर','उतनी ही स्पीड','आँखें बंद करके'],1],
+ ['📱','Using a phone while driving is…','गाड़ी चलाते फोन चलाना…',['Fine','Dangerous','Smart','Required'],['ठीक है','खतरनाक है','समझदारी','ज़रूरी'],1],
+ ['⬅️','Before turning you should use…','मुड़ने से पहले क्या दें…',['Indicator','Horn only','Nothing','Brake hard'],['इंडिकेटर','सिर्फ हॉर्न','कुछ नहीं','ज़ोर से ब्रेक'],0],
+ ['🚧','Road work sign means…','रोड वर्क साइन का मतलब…',['Race zone','Be careful, workers ahead','Free parking','Fast lane'],['रेस ज़ोन','सावधान, आगे काम चल रहा है','फ्री पार्किंग','तेज़ लेन'],1],
+ ['🔊','When should you use the horn?','हॉर्न कब बजाएँ?',['Always','Only when needed','Near hospitals','At night for fun'],['हमेशा','सिर्फ ज़रूरत पर','अस्पताल के पास','रात में मज़े के लिए'],1],
+];
+let QS=null;
+function menuHub(){
+  show('<h2>🧠 Brain &amp; Photo</h2><div class="chips"><span class="chip">🧠 Best '+S.quiz.best+'/5</span><span class="chip">📸 '+Object.keys(S.shots).length+'/'+PQ.length+'</span></div>'+
+   '<button class="go" id="hQz">🚦 Road Safety Quiz</button><button class="go alt" id="hPh">📸 Photo Challenges</button><button class="go alt" id="hRc">🏆 My Records</button><button class="go dark" id="hLg">🌐 Language: '+(S.lang?'हिंदी':'English')+'</button><button class="go dark" id="bBack">← Back</button>');
+  bind('hQz',()=>startQuiz());bind('hPh',menuPhotoQ);bind('hRc',menuRecords);bind('hLg',()=>{S.lang^=1;save();menuHub();});bind('bBack',()=>PAUSED_FROM_PLAY?menuPause():menuMain());
+}
+function startQuiz(){
+  const idx=QZ.map((_,i)=>i).sort(()=>Math.random()-.5).slice(0,5);QS={idx,i:0,score:0};quizQ();
+}
+function quizQ(){
+  const q=QZ[QS.idx[QS.i]];
+  show('<h2>🚦 '+LG('Question','सवाल')+' '+(QS.i+1)+'/5</h2><div style="font-size:54px;line-height:1.1">'+q[0]+'</div><p class="sub" style="font-size:16px">'+LG(q[1],q[2])+'</p>'+
+   q[3].map((o,k)=>'<button class="go dark qo" data-k="'+k+'">'+LG(o,q[4][k])+'</button>').join(''));
+  card.querySelectorAll('.qo').forEach(b=>b.addEventListener('click',()=>{initAudio();quizAns(+b.dataset.k);}));
+}
+function quizAns(k){
+  const q=QZ[QS.idx[QS.i]],ok=k===q[5];if(ok){QS.score++;sfx('ok');}else sfx('fail');
+  show('<h2>'+(ok?'✅ '+LG('Correct!','सही!'):'❌ '+LG('Not quite','गलत'))+'</h2><div style="font-size:48px">'+q[0]+'</div><p class="sub" style="font-size:16px">'+LG('Answer','जवाब')+': <b>'+LG(q[3][q[5]],q[4][q[5]])+'</b></p><button class="go" id="qN">'+(QS.i<4?LG('Next ▶','आगे ▶'):LG('Finish','खत्म'))+'</button>');
+  bind('qN',()=>{QS.i++;if(QS.i<5)quizQ();else quizEnd();});
+}
+function quizEnd(){
+  const sc=QS.score,xp=sc*15,co=sc*20;addXP(xp);addCoins(co);S.quiz.done++;if(sc>S.quiz.best)S.quiz.best=sc;save();if(sc>=4)sfx('win');
+  show('<h2>'+(sc===5?'🏆 ':'⭐ ')+sc+'/5</h2><p class="sub">'+(sc>=4?LG('Safe-driving champion!','सुरक्षित ड्राइविंग चैंपियन!'):LG('Good try! Play again.','अच्छा प्रयास! फिर खेलो।'))+'</p><div class="chips"><span class="chip">+'+xp+' XP</span><span class="chip">+🪙'+co+'</span></div><button class="go" id="qA">🔁 '+LG('Play again','फिर खेलो')+'</button><button class="go dark" id="bBack">← '+LG('Back','वापस')+'</button>');
+  bind('qA',startQuiz);bind('bBack',menuHub);
+}
+/* ---- photo challenges ---- */
+function nearNPC(){for(const id in npcGroups){const n=npcGroups[id];if(Math.hypot(car.x-n.x,car.z-n.z)<14)return true;}return false;}
+const PQ=[
+ {id:'night',ic:'🌙',t:'Night Owl',d:'Take a photo at night',f:()=>gameHour>=20||gameHour<5},
+ {id:'rain',ic:'🌧️',t:'Rainy Day',d:'Photo while it rains',f:()=>OPT.weather===1},
+ {id:'air',ic:'🚀',t:'Air Time',d:'Photo while jumping',f:()=>car.air},
+ {id:'npc',ic:'🤳',t:'Say Cheese!',d:'Photo near a city character',f:nearNPC},
+ {id:'bike',ic:'🏍️',t:'Two Wheels',d:'Photo on a bike or scooty',f:()=>CUR&&(CUR.type==='bike'||CUR.type==='scoot')},
+ {id:'home',ic:'🏡',t:'Home Sweet Home',d:'Photo near My Home',f:()=>Math.hypot(car.x-HOMEPOS.x,car.z-HOMEPOS.z)<45},
+ {id:'fog',ic:'🌫️',t:'Misty Morning',d:'Photo in fog',f:()=>OPT.weather===2},
+ {id:'sunset',ic:'🌇',t:'Golden Hour',d:'Photo at sunset (5–7 pm)',f:()=>gameHour>=17&&gameHour<19.5},
+];
+function menuPhotoQ(){
+  show('<h2>📸 Photo Challenges</h2><div style="max-height:46vh;overflow:auto;text-align:left">'+PQ.map(p=>'<div style="padding:5px 2px;opacity:'+(S.shots[p.id]?1:.8)+'">'+(S.shots[p.id]?'✅':p.ic)+' <b>'+p.t+'</b><br><small>'+p.d+(S.shots[p.id]?'':' · +30 XP · +🪙40')+'</small></div>').join('')+'</div><p class="sub" style="margin:4px 0">Pause → 📸 Photo mode → take the shot!</p><button class="go" id="bFree">▶ Play</button><button class="go dark" id="bBack">← Back</button>');
+  bind('bFree',()=>{if(MIS)endMissionCleanup();startPlay();});bind('bBack',menuHub);
+}
+const _savePhoto=savePhoto;
+savePhoto=function(){
+  _savePhoto();
+  const got=[];for(const p of PQ){if(!S.shots[p.id]&&p.f()){S.shots[p.id]=1;addXP(30);addCoins(40);got.push(p.ic+' '+p.t);}}
+  if(got.length){sfx('win');setTimeout(()=>toast('📸 Challenge done: '+got.join(', ')+'  +XP +🪙',3200),700);save();}
+};
+MAIN_EXTRA.push({id:'bHub',label:()=>'🧠 Quiz · 📸 Challenges',fn:menuHub});
+/* ================= Stage F: ghost car, records, FLY cheat, Hindi NPC chat ================= */
+S.ghost=S.ghost||{};S.ghostT=S.ghostT||{};
+/* ---- ghost for the City Race ---- */
+const GH={mesh:null,rec:[],lastM:null,rt:0,play:null};
+function ghostMesh(){
+  const g=new THREE.Group(),mat=new THREE.MeshBasicMaterial({color:0x66e0ff,transparent:true,opacity:.38,depthWrite:false});
+  const b=new THREE.Mesh(new THREE.BoxGeometry(1.8,.7,4),mat);b.position.y=.6;const c=new THREE.Mesh(new THREE.BoxGeometry(1.5,.6,2),mat);c.position.set(0,1.2,-.2);
+  g.add(b);g.add(c);g.visible=false;scene.add(g);return g;
+}
+EXT_UPDATE.push(dt=>{
+  if(TWO)return;
+  if(!GH.mesh)GH.mesh=ghostMesh();
+  const M=MIS;
+  if(M!==GH.lastM){GH.lastM=M;GH.rec=[];GH.rt=0;GH.play=(M&&M.id==='race'&&S.ghost[M.cname]&&S.ghost[M.cname].length>3)?S.ghost[M.cname]:null;}
+  if(!M||M.id!=='race'||M.over||!M.running||STATE!=='play'){GH.mesh.visible=false;return;}
+  GH.rt+=dt;if(GH.rt>=.2){GH.rt-=.2;GH.rec.push([Math.round(car.x*10),Math.round(car.z*10),Math.round(car.h*100)]);}
+  const p=GH.play;
+  if(p){const f=M.t/.2,i=Math.floor(f);if(i>=p.length-1){GH.mesh.visible=false;return;}
+    const a=p[i],b=p[i+1],k=f-i;GH.mesh.visible=M.t>.2;
+    GH.mesh.position.set((a[0]+(b[0]-a[0])*k)/10,0,(a[1]+(b[1]-a[1])*k)/10);
+    let dh=(b[2]-a[2])/100;dh=Math.atan2(Math.sin(dh),Math.cos(dh));GH.mesh.rotation.y=a[2]/100+dh*k;
+    const gy=groundH(GH.mesh.position.x,GH.mesh.position.z);GH.mesh.position.y=gy||0;}
+  else GH.mesh.visible=false;
+});
+MIS_L.push((M,ok)=>{
+  if(!ok||M.id!=='race'||GH.lastM!==M)return;
+  const b=S.ghostT[M.cname];
+  if((b===undefined||M.t<b)&&GH.rec.length>3){S.ghostT[M.cname]=M.t;S.ghost[M.cname]=GH.rec.slice();save();setTimeout(()=>toast('👻 New ghost saved — race against your best!',3200),1800);}
+});
+/* ---- FLY cheat ---- */
+CHEATS.FLY=['fly: Nitro = up, Handbrake = down (toggle)',()=>{CHEAT.fly^=1;if(!CHEAT.fly&&car.air){car.vy=0;}return CHEAT.fly?'ON':'OFF';}];
+CHEATS.RESET[1]=(old=>()=>{CHEAT.fly=0;return old();})(CHEATS.RESET[1]);
+EXT_UPDATE.push(dt=>{
+  if(!CHEAT.fly||STATE!=='play'||TWO)return;
+  const up=inp.nitro,dn=inp.hb;
+  if(!car.air){if(up){car.y+=.6;car.air=true;car.tkx=car.x;car.tkz=car.z;car.airT=0;car.vy=8;}return;}
+  let vy=up?9:dn?-7:0;if(vy<0&&car.y<3)vy=-2.5;
+  if(car.y>70&&vy>0)vy=0;
+  car.vy=vy;car.airT=0;car.pitch*=.9;car.roll*=.9;
+});
+/* ---- Records screen ---- */
+function menuRecords(){
+  const B=S.best,r=(n,v)=>'<div style="display:flex;justify-content:space-between;padding:4px 6px"><span>'+n+'</span><b>'+v+'</b></div>';
+  const t=v=>v===undefined?'—':v.toFixed(1)+' s';
+  show('<h2>🏆 My Records</h2><div style="max-height:44vh;overflow:auto;text-align:left">'+
+   r('🏁 City Race best',t(B.race))+r('🤸 Best jump',(B.jump||0)+' m')+r('📸 Speed-cam record',(B.cam||0)+' km/h')+
+   r('⭐ Level',lvlOf(S.xp).l+' · '+rankOf(lvlOf(S.xp).l))+r('🧠 Quiz best',S.quiz.best+'/5')+r('📸 Photo challenges',Object.keys(S.shots).length+'/'+PQ.length)+
+   r('📖 Story',Math.min(S.story.ch,STORY.length)+'/'+STORY.length)+r('👻 Race ghosts',Object.keys(S.ghost).length+' track(s)')+
+   '</div><button class="go dark" id="bBack">← Back</button>');
+  bind('bBack',menuHub);
+}
+/* ---- Hindi NPC chat ---- */
+const HI_CHAT={
+ 'The city looks lovely today, no?':'आज शहर कितना सुंदर लग रहा है, है ना?',
+ 'Remember: green light means go, red means wait. Even for the Mayor!':'याद रखना: हरी बत्ती मतलब चलो, लाल मतलब रुको। मेयर के लिए भी!',
+ 'My secret ingredient? Love... and extra cheese!':'मेरा सीक्रेट मसाला? प्यार... और एक्स्ट्रा चीज़!',
+ 'Pizza tastes best when it is hot, hot, hot!':'पिज़्ज़ा गरमा-गरम ही सबसे अच्छा लगता है!',
+ 'Upgrade your tires and the car sticks to the road like a gecko!':'टायर अपग्रेड करो, गाड़ी छिपकली की तरह सड़क पकड़ लेगी!',
+ 'A good engine purrs like a kitten. A BAD one... sneezes.':'अच्छा इंजन बिल्ली की तरह गुर्राता है। खराब वाला... छींकता है!',
+ 'Tip: handbrake + steering = DRIFT. Smoke everywhere!':'टिप: हैंडब्रेक + स्टीयरिंग = ड्रिफ्ट। चारों तरफ धुआँ!',
+ 'I have won 37 trophies. And one very ugly mug.':'मैंने 37 ट्रॉफी जीती हैं। और एक बहुत बदसूरत मग भी!',
+ 'Beta, always eat your vegetables and wear your seatbelt.':'बेटा, हमेशा सब्ज़ियाँ खाओ और सीट बेल्ट लगाओ।',
+ 'I once rode a camel to market. Faster than this traffic!':'मैं एक बार ऊँट पर बाज़ार गई थी। इस ट्रैफिक से तेज़ था!',
+ 'An apple a day keeps the doctor away. Not that I mind visitors!':'रोज़ एक सेब खाओ, डॉक्टर दूर रहेगा। वैसे मुझे मेहमान पसंद हैं!',
+ 'Brush twice a day, drive once carefully.':'दिन में दो बार ब्रश करो, गाड़ी ध्यान से चलाओ।',
+ 'I want to be a racer when I grow up! Or an astronaut. Or both.':'मैं बड़ी होकर रेसर बनूँगी! या एस्ट्रोनॉट। या दोनों!',
+ 'My dog is faster than your car! ...Okay maybe not.':'मेरा कुत्ता तुम्हारी गाड़ी से तेज़ है! ...अच्छा शायद नहीं।',
+ 'Cars these days have no horns like they used to. Pom pom!':'आजकल की गाड़ियों में पहले जैसे हॉर्न नहीं। पों पों!',
+ 'I walk 10,000 steps daily. Mostly to the tea stall.':'मैं रोज़ 10,000 कदम चलता हूँ। ज़्यादातर चाय की दुकान तक!',
+ 'Music makes the whole city move. Even the buses!':'म्यूज़िक पूरे शहर को नचा देता है। बसों को भी!',
+ 'Can you drift in rhythm? I dare you!':'क्या तुम ताल में ड्रिफ्ट कर सकते हो? चैलेंज!',
+ 'Dude! The big ramp at the plaza is EPIC.':'यार! प्लाज़ा की बड़ी रैम्प ज़बरदस्त है।',
+ 'Jump high, land soft, repeat.':'ऊँचा कूदो, आराम से उतरो, फिर दोहराओ।',
+};
+const _openDlg=openDlg;
+openDlg=function(id,lines,opts){if(S.lang)lines=lines.map(l=>HI_CHAT[l]||l);_openDlg(id,lines,opts);};
+/* ================= Stage G: Hindi story ================= */
+(function(){
+const EN=["Welcome to Sunny City, young driver! I am Mayor Mira. 🌆","Our city needs a careful, friendly driver — one who stops at red lights AND says thank you to Granny.","Are you ready to become our City Hero?","Yes, let's go! 🚗","Wonderful spirit! Here is a little welcome gift.","Tell me more 🤔","Simple: help people around the city, win medals, earn coins. Here is a gift for listening so well!","Next: find Chef Tara — look for the ❗ marker!","Namaste! Chef Tara here. My pizza shop is crazy busy today! 🍕","I need 3 pizzas delivered before they get cold. Can you help?","Yes, I'll deliver!","Back again? Shall we try the pizza delivery once more?","Still piping hot! Everyone loved it. 😋","You drive like a pro. Here, you earned this!","Next: Raju the mechanic needs help.","Arre bhai! My shiny tool-bolts fell out of my truck and scattered all over town! 🔩","Collect 30 of them in 80 seconds — they glow gold on the map!","Bolts hunt, start!","The bolts are still out there! Want another go?","Every single bolt! Fantastic. Now choose your thank-you gift:","🔧 Free engine upgrade","🪙 100 coins","Next: Rocky the racer wants a challenge.","Hey! I'm Rocky. They say I'm the fastest in town. 😎","Think you can beat the clock on the city race? Use your nitro!","You're on!","Ha! Need another try? Rocky is waiting.","Whoa... okay, you ARE fast. I respect that.","Take this little Scooty — every racer starts small!","Next: Granny Sita needs a gentle driver.","Beta, my knees are not what they used to be. 👵","Please drive my friends around — slowly and safely. Bumps give them tummy aches!","Happy to help, Granny!","Beta, will you drive my friends once more?","Such a gentle driver! God bless you, beta.","Take this — I planted these flowers for your garden.","Next: Skater Max has a stunt dare.","Yo! I'm Max. 🛹","Bet you can't ride the plaza ramps and land big flips. 100 seconds. Go!","Dare accepted!","Dude, the ramps are waiting. Again?","SICK! That was the best flip I ever saw. 🤯","Respect. Here is a bonus!","Next: Dr. Neel has an emergency!","Oh no, oh no! Someone drove off with my medicine bag in a purple car! 😱","Please catch up and stay close until they stop. No crashing — just chase!","I'll catch them!","The purple car is still out there. Try again?","You got my bag back! Thank you so much.","Please take my Ambulance — you will need it in the city!","Last: Mayor Mira has a final test.","You have helped everyone in Sunny City! 🌟","One last test for a City Hero: park perfectly in 5 bays at the new car park. Slow and straight!","Parking time!","Shall we try the parking test again, hero?","PERFECT! By the power of Sunny City, I name you our CITY HERO! 🎉","Here is the keys to our biggest vehicle — the Monster Truck. Drive it with pride!","You are the City Hero! 🏆"];
+const HI=[
+'सनी सिटी में स्वागत है, नन्हे ड्राइवर! मैं मेयर मीरा हूँ। 🌆',
+'हमारे शहर को एक सावधान, दोस्ताना ड्राइवर चाहिए — जो लाल बत्ती पर रुके और दादी को "धन्यवाद" कहे।',
+'क्या तुम हमारे सिटी हीरो बनने के लिए तैयार हो?',
+'हाँ, चलो! 🚗',
+'शाबाश! ये रहा तुम्हारे लिए एक छोटा-सा स्वागत उपहार।',
+'और बताइए 🤔',
+'सीधी बात: शहर के लोगों की मदद करो, मेडल जीतो, सिक्के कमाओ। ध्यान से सुनने का ये इनाम लो!',
+'आगे: शेफ़ तारा से मिलो — ❗ का निशान ढूँढो!',
+'नमस्ते! मैं शेफ़ तारा। आज मेरी पिज़्ज़ा की दुकान में बहुत भीड़ है! 🍕',
+'3 पिज़्ज़ा ठंडे होने से पहले पहुँचाने हैं। मदद करोगे?',
+'हाँ, मैं पहुँचाऊँगा!',
+'फिर आ गए? पिज़्ज़ा डिलीवरी एक बार और करें?',
+'अभी भी गरमा-गरम! सबको बहुत पसंद आया। 😋',
+'तुम तो पक्के प्रो ड्राइवर हो। ये लो, तुमने कमाया है!',
+'आगे: मैकेनिक राजू को मदद चाहिए।',
+'अरे भाई! मेरे चमकीले नट-बोल्ट ट्रक से गिरकर पूरे शहर में बिखर गए! 🔩',
+'80 सेकंड में 30 इकट्ठा करो — नक्शे पर वे सुनहरे चमकते हैं!',
+'बोल्ट की खोज, शुरू!',
+'बोल्ट अभी भी बाहर पड़े हैं! एक बार और कोशिश करोगे?',
+'एक-एक बोल्ट मिल गया! कमाल! अब अपना धन्यवाद-उपहार चुनो:',
+'🔧 मुफ़्त इंजन अपग्रेड',
+'🪙 100 सिक्के',
+'आगे: रेसर रॉकी को चुनौती देनी है।',
+'अरे! मैं रॉकी हूँ। लोग कहते हैं मैं शहर में सबसे तेज़ हूँ। 😎',
+'क्या तुम सिटी रेस में घड़ी को हरा सकते हो? नाइट्रो इस्तेमाल करना!',
+'चलो, हो जाए!',
+'हा! एक और कोशिश? रॉकी इंतज़ार कर रहा है।',
+'वाह... ठीक है, तुम सच में तेज़ हो। मैं मान गया।',
+'ये छोटी-सी स्कूटी लो — हर रेसर छोटे से ही शुरू करता है!',
+'आगे: दादी सीता को आराम से चलने वाला ड्राइवर चाहिए।',
+'बेटा, अब मेरे घुटने पहले जैसे नहीं रहे। 👵',
+'मेरे दोस्तों को आराम से और सुरक्षित घुमा दो। झटकों से उनके पेट में दर्द होता है!',
+'ज़रूर दादी, खुशी से!',
+'बेटा, मेरे दोस्तों को एक बार फिर घुमा दोगे?',
+'कितना नरम ड्राइवर है! भगवान भला करे, बेटा।',
+'ये लो — मैंने तुम्हारे बगीचे के लिए ये फूल लगाए थे।',
+'आगे: स्केटर मैक्स की स्टंट चुनौती है।',
+'यो! मैं मैक्स हूँ। 🛹',
+'शर्त लगी, तुम प्लाज़ा की रैम्प पर बड़ी फ्लिप नहीं लगा सकते। 100 सेकंड। चलो!',
+'चुनौती मंज़ूर!',
+'यार, रैम्प इंतज़ार कर रही हैं। फिर से?',
+'ज़बरदस्त! ऐसी फ्लिप मैंने कभी नहीं देखी। 🤯',
+'सलाम! ये लो बोनस!',
+'आगे: डॉ. नील के पास इमरजेंसी है!',
+'हाय राम! कोई बैंगनी गाड़ी में मेरा दवाइयों का बैग ले भागा! 😱',
+'पीछे पहुँचो और उनके रुकने तक पास रहो। टक्कर नहीं — सिर्फ़ पीछा!',
+'मैं उन्हें पकड़ लूँगा!',
+'बैंगनी गाड़ी अभी भी बाहर है। फिर कोशिश करें?',
+'मेरा बैग वापस मिल गया! बहुत-बहुत धन्यवाद।',
+'ये एम्बुलेंस ले लो — शहर में तुम्हारे काम आएगी!',
+'आख़िरी: मेयर मीरा की एक आख़िरी परीक्षा है।',
+'तुमने सनी सिटी में सबकी मदद कर दी! 🌟',
+'सिटी हीरो की आख़िरी परीक्षा: नई कार पार्क में 5 जगह एकदम सही पार्क करो। धीरे और सीधे!',
+'पार्किंग का समय!',
+'हीरो, पार्किंग की परीक्षा एक बार और दें?',
+'परफ़ेक्ट! सनी सिटी की ताक़त से मैं तुम्हें हमारा सिटी हीरो घोषित करती हूँ! 🎉',
+'ये लो हमारी सबसे बड़ी गाड़ी की चाबी — मॉन्स्टर ट्रक। गर्व से चलाना!',
+'तुम सिटी हीरो हो! 🏆'];
+EN.forEach((e,i)=>{if(HI[i])HI_CHAT[e]=HI[i];});
+Object.assign(HI_CHAT,{'Yes!':'हाँ!','Maybe later':'बाद में','Yes, again!':'हाँ, फिर से!','Not now':'अभी नहीं',
+ 'Hello! I will need your help soon. ✨':'नमस्ते! मुझे जल्दी ही तुम्हारी मदद चाहिए होगी। ✨'});
+})();
 /* ================= boot ================= */
 function genWorldAndRest(){
   const cones=genWorld();
@@ -2001,7 +2484,7 @@ function boot(){
   requestAnimationFrame(t=>{lastT=t;requestAnimationFrame(frame);});
 }
 boot();
-window.__cd=DBG?{car,inp,S,OPT,TRAFFIC,CT,CT_IDS,get MIS(){return MIS;},get STATE(){return STATE;},startMission,placeCar,respawnOnRoad,menuMain,menuMissions,menuGarage,menuPause,menuSettings,menuRace2,startRace2,get R2(){return R2;},get TWO(){return TWO;},startPlay,setGameState,update,lightAndCam,renderer,scene,camera,TOD,applyTOD,MDEF,TARGETS:()=>TARGETS,CONES,RAMPS,groundH,rc,bc,N,P,HALF,setPlayerCar,pauseGame,resumeGame,enterPhoto,exitPhoto,applySettings,freeCoins,misCoins,pausedSet:v=>{paused=v;},setHour:h=>{gameHour=h;applyTOD(h);},finishMission,COL,pointBlocked,lightState,get time(){return simTime;}}:null;
+window.__cd=DBG?{car,inp,S,OPT,TRAFFIC,CT,CT_IDS,get MIS(){return MIS;},get STATE(){return STATE;},startMission,placeCar,respawnOnRoad,menuMain,menuMissions,menuGarage,menuPause,menuSettings,menuRace2,menuStory,menuHub,menuRecords,startQuiz,quizAns,PQ,menuCheats,runCheat,talkTo,NPCS,npcGroups,STORY,lvlOf,addXP,CHEAT,WX,startRace2,get R2(){return R2;},get TWO(){return TWO;},startPlay,setGameState,update,lightAndCam,renderer,scene,camera,TOD,applyTOD,MDEF,TARGETS:()=>TARGETS,CONES,RAMPS,groundH,rc,bc,N,P,HALF,setPlayerCar,pauseGame,resumeGame,enterPhoto,exitPhoto,applySettings,freeCoins,misCoins,pausedSet:v=>{paused=v;},setHour:h=>{gameHour=h;applyTOD(h);},finishMission,COL,pointBlocked,lightState,get time(){return simTime;}}:null;
 
 /* PWA: offline + installable (only over http/https) */
 if('serviceWorker' in navigator&&/^https?:/.test(location.protocol)&&!DBG){addEventListener('load',()=>{navigator.serviceWorker.register('sw.js').catch(()=>{});});}
